@@ -17,9 +17,13 @@ class BeneficiariosController extends Controller
     {
         $perPage = $request->query('perpage', 10);
         $page = $request->query('page', 1);
-
-        $beneficiario = Beneficiario::paginate($perPage, ['*'], 'page', $page);
-        return response()->json($beneficiario);
+        if ($request->has('search')) {
+            $withSearch = explode('|', $request->search);
+            $beneficiarios = Beneficiario::where($withSearch[0], 'like', '%' .$withSearch[1] . '%')->paginate($perPage, ['*'], 'page', $page);
+        } else {
+            $beneficiarios = Beneficiario::paginate($perPage, ['*'], 'page', $page);
+        }
+        return response()->json($beneficiarios);
     }
 
     /**
