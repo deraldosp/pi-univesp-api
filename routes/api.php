@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeneficiariosController;
+use App\Http\Controllers\DistribuicaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::middleware('auth:api')->group(function() {
         Route::get('/beneficiario/{beneficiario}', 'show');
         Route::put('/beneficiario/{beneficiario}', 'update');
         Route::delete('/beneficiario/{beneficiario}' , 'destroy');
+    });
+
+    Route::controller(DistribuicaoController::class)->group(function() {
+       Route::post('/distribuicao', 'takeBenefit');
     });
 });
 

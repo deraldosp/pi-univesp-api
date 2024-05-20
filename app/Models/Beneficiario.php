@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Beneficiario extends Model
 {
@@ -12,7 +13,7 @@ class Beneficiario extends Model
 
     protected $hidden = [ 'created_by_id' ];
 
-    protected $with = [ 'createdBy' ];
+    protected $with = [ 'createdBy', 'lastBenefit'];
 
     protected $fillable = [
         'nome',
@@ -41,5 +42,10 @@ class Beneficiario extends Model
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function lastBenefit(): HasOne
+    {
+        return $this->hasOne(Distribuicao::class, 'beneficiarios_id', 'id')->latestOfMany();
     }
 }
