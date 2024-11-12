@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Beneficiario;
+use App\Models\Doadores;
 use App\Models\EntidadeBeneficente;
 use App\Models\EntidadeUnidade;
 use App\Models\User;
@@ -45,5 +46,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('unidade', EntidadeUnidade::class);
         Route::model('entidade', EntidadeBeneficente::class);
         Route::model('user', User::class);
+        Route::model('doador', Doadores::class);
     }
 }

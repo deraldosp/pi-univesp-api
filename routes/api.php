@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DoadoresController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeneficiariosController;
@@ -28,6 +29,14 @@ Route::middleware('auth:api')->group(function() {
         Route::get('/beneficiario/{beneficiario}', 'show');
         Route::put('/beneficiario/{beneficiario}', 'update');
         Route::delete('/beneficiario/{beneficiario}' , 'destroy');
+    });
+
+    Route::controller(DoadoresController::class)->group(function() {
+        Route::get('/doadores', 'index');
+        Route::post('/doadores' , 'store');
+        Route::get('/doadores/{doador}', 'show');
+        Route::put('/doadores/{doador}', 'update');
+        Route::delete('/doadores/{doador}' , 'destroy');
     });
 
     Route::controller(DistribuicaoController::class)->group(function() {
