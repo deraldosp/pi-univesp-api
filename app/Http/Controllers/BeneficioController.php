@@ -13,7 +13,8 @@ class BeneficioController extends Controller
      */
     public function index()
     {
-        //
+        $beneficios = Beneficio::all();
+        return response()->json($beneficios);
     }
 
     /**

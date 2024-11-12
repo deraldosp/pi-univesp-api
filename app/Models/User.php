@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
-    public function Entifdade(): BelongsTo {
+    public function entidade(): BelongsTo {
         return $this->belongsTo(EntidadeBeneficente::class);
     }
 

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeneficiariosController;
 use App\Http\Controllers\DistribuicaoController;
+use App\Http\Controllers\TiposDoacoesController;
+use App\Http\Controllers\EntidadeBeneficenteController;
+use App\Http\Controllers\BeneficioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,14 @@ use App\Http\Controllers\DistribuicaoController;
 Route::middleware('auth:api')->group(function() {
     Route::get('/user', function (Request $request) {
         return $request->user();
+    });
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/tipos_doacoes', [TiposDoacoesController::class, 'index']);
+    Route::get('/beneficios', [BeneficioController::class, 'index']);
+
+    Route::controller(EntidadeBeneficenteController::class)->group(function() {
+        Route::get('/entidade_beneficente/{entidade}/unidades', 'unidadesByEntidade');
     });
 
     Route::controller(BeneficiariosController::class)->group(function() {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEntidadeBeneficenteRequest;
 use App\Http\Requests\UpdateEntidadeBeneficenteRequest;
 use App\Models\EntidadeBeneficente;
+use App\Models\EntidadeUnidade;
 
 class EntidadeBeneficenteController extends Controller
 {
@@ -14,6 +15,10 @@ class EntidadeBeneficenteController extends Controller
     public function index()
     {
         //
+    }
+
+    public function unidadesByEntidade(EntidadeBeneficente $entidade) {
+        return response()->json($entidade->load('unidades')->unidades);
     }
 
     /**

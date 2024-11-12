@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEntidadeUnidadeRequest;
 use App\Http\Requests\UpdateEntidadeUnidadeRequest;
+use App\Models\EntidadeBeneficente;
 use App\Models\EntidadeUnidade;
+use Illuminate\Http\Request;
 
 class EntidadeUnidadeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
     }

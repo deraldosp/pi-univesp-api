@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beneficios', function (Blueprint $table) {
+        Schema::create('tipos_doacoes', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_beneficio');
-            $table->string('descricao');
-            $table->integer('quantidade_disponivel')->nullable();
-            $table->foreignId('created_by_id')->constrained('users');
-            $table->softDeletes();
+            $table->string('nome');
+            $table->string('descricao')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beneficios');
+        Schema::dropIfExists('tipos_doacoes');
     }
 };
