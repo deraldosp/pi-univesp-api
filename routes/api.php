@@ -9,7 +9,7 @@ use App\Http\Controllers\DistribuicaoController;
 use App\Http\Controllers\TiposDoacoesController;
 use App\Http\Controllers\EntidadeBeneficenteController;
 use App\Http\Controllers\BeneficioController;
-
+use App\Http\Controllers\DoacoesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +27,7 @@ Route::middleware('auth:api')->group(function() {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('doacao', [DoacoesController::class, 'store']);
     Route::get('/tipos_doacoes', [TiposDoacoesController::class, 'index']);
     Route::get('/beneficios', [BeneficioController::class, 'index']);
 

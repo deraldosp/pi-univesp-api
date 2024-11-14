@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('doador_id')->nullable();
             $table->unsignedBigInteger('tipo_id')->nullable();
+            $table->unsignedBigInteger('unidade_id')->nullable();
             $table->integer('quantidade')->nullable();
             $table->decimal('valor')->nullable();
+            $table->tinyInteger('judicial')->default(0);
             $table->timestamps();
+            $table->foreign('unidade_id')->references('id')->on('entidade_unidades');
             $table->foreign('doador_id')->references('id')->on('doadores');
             $table->foreign('tipo_id')->references('id')->on('tipos_doacoes');
         });
