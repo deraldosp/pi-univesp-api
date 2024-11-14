@@ -14,7 +14,7 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: "${{ secrets.CI_MYSQL_ROOT_PASSWORD }}"
           MYSQL_DATABASE: laravel
         ports:
           - 3306:3306
@@ -47,7 +47,7 @@ jobs:
 
       - name: Wait for MySQL
         run: |
-          until mysql -h mysql -u root -plaravel_ci -e "SHOW DATABASES"; do
+          until mysql -h 127.0.0.1 -u root -p'${{ secrets.CI_MYSQL_ROOT_PASSWORD }}' -e "SHOW DATABASES"; do
             sleep 1
           done
 
