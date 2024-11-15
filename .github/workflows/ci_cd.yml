@@ -109,7 +109,7 @@ jobs:
 
     - name: Run Laravel migrations and seeds
       if: steps.check_files.outputs.files_exists == 'true'
-      run: php artisan migrate --force && php artisan db:seed --force
+      run: php artisan migrate && php artisan db:seed
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
