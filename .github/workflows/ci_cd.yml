@@ -96,6 +96,21 @@ jobs:
       if: steps.check_files.outputs.files_exists == 'true'
       run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+    - name: Set up database environment variables
+      if: steps.check_files.outputs.files_exists == 'true'
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_DATABASE: ${{ secrets.DB_DATABASE }}
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: echo "Database environment variables set"
+
+    - name: Run Laravel migrations and seeds
+      if: steps.check_files.outputs.files_exists == 'true'
+      run: php artisan migrate --force && php artisan db:seed --force
+
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
