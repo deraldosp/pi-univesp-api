@@ -51,7 +51,3 @@ jobs:
     # Limpar cache do Laravel
     - name: Clear cache
       run: php artisan config:clear && php artisan route:clear && php artisan view:clear
-
-    # Aplicar migrações no banco de dados
-    - name: Run database migrations
-      run: php artisan migrate --force
