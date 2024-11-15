@@ -2,6 +2,12 @@ name: CI/CD - Univesp PI - Caritas
 env:
   AZURE_WEBAPP_NAME: caritas-api
   AZURE_WEBAPP_PACKAGE_PATH: '.'
+  DB_CONNECTION: mysql
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_DATABASE: ${{ secrets.DB_DATABASE }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   PHP_VERSION: '8.2.0'
 
 on:
@@ -95,17 +101,6 @@ jobs:
     - name: Run composer install if composer.json exists
       if: steps.check_files.outputs.files_exists == 'true'
       run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
-
-    - name: Set up database environment variables
-      if: steps.check_files.outputs.files_exists == 'true'
-      env:
-        DB_CONNECTION: mysql
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        DB_DATABASE: ${{ secrets.DB_DATABASE }}
-        DB_USERNAME: ${{ secrets.DB_USERNAME }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: echo "Database environment variables set"
 
     - name: Run Laravel migrations and seeds
       if: steps.check_files.outputs.files_exists == 'true'
