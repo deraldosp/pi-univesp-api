@@ -2,7 +2,7 @@ name: CI/CD - Univesp PI - Caritas
 env:
   AZURE_WEBAPP_NAME: caritas-api
   AZURE_WEBAPP_PACKAGE_PATH: '.'
-  PHP_VERSION: '8.x'
+  PHP_VERSION: '8.2.0'
 
 on:
   workflow_dispatch:
