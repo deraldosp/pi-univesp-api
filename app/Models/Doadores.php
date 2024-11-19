@@ -12,13 +12,19 @@ class Doadores extends Model
         'nome',
         'razao_social',
         'cnpj_cpf',
+        'telefone',
+        'email',
+        'cep',
         'endereco',
-        'numero',
         'bairro',
         'cidade',
         'uf',
-        'cep',
-        'telefone',
-        'email'
+        'data_ult_doacao',
+        'valor_ult_doacao',
+        'telefone'
+    ];
+
+    protected $casts = [
+        'data_ult_doacao' => 'datetime:Y-m-d',
     ];
 }
