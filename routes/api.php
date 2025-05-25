@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoadoresController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,10 @@ Route::middleware('auth:api')->group(function() {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('doacao', [DoacoesController::class, 'store']);
+    Route::post('/doacao', [DoacoesController::class, 'store']);
     Route::get('/tipos_doacoes', [TiposDoacoesController::class, 'index']);
     Route::get('/beneficios', [BeneficioController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::controller(EntidadeBeneficenteController::class)->group(function() {
         Route::get('/entidade_beneficente/{entidade}/unidades', 'unidadesByEntidade');
