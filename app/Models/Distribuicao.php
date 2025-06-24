@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Distribuicao extends Model
 {
@@ -18,4 +20,10 @@ class Distribuicao extends Model
         'quantidade',
         'created_by_id'
     ];
+
+    public function unidade (): BelongsTo {
+        return $this->belongsTo(EntidadeUnidade::class, 'unidade_beneficente_id')
+            ->select(['id','nome', 'entidade_beneficentes_id'])
+            ->with('entidade');
+    }
 }
