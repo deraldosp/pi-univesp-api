@@ -10,6 +10,7 @@ use App\Http\Controllers\TiposDoacoesController;
 use App\Http\Controllers\EntidadeBeneficenteController;
 use App\Http\Controllers\BeneficioController;
 use App\Http\Controllers\DoacoesController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,6 +31,7 @@ Route::middleware('auth:api')->group(function() {
     Route::post('doacao', [DoacoesController::class, 'store']);
     Route::get('/tipos_doacoes', [TiposDoacoesController::class, 'index']);
     Route::get('/beneficios', [BeneficioController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::controller(EntidadeBeneficenteController::class)->group(function() {
         Route::get('/entidade_beneficente/{entidade}/unidades', 'unidadesByEntidade');

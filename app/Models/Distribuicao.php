@@ -26,4 +26,9 @@ class Distribuicao extends Model
             ->select(['id','nome', 'entidade_beneficentes_id'])
             ->with('entidade');
     }
+
+    public function beneficiario (): BelongsTo {
+        return $this->belongsTo(Beneficiario::class, 'beneficiarios_id')
+            ->select(['id','nome', 'numero_dependentes']);
+    }
 }
