@@ -11,7 +11,6 @@ use App\Http\Controllers\TiposDoacoesController;
 use App\Http\Controllers\EntidadeBeneficenteController;
 use App\Http\Controllers\BeneficioController;
 use App\Http\Controllers\DoacoesController;
-use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
