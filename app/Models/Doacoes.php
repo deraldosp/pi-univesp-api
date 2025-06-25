@@ -23,9 +23,9 @@ class Doacoes extends Model
         return $this->belongsTo(Doadores::class, 'doador_id');
     }
     public function tipo(): HasOne {
-        return $this->hasOne(TiposDoacoes::class, 'tipo_id');
+        return $this->hasOne(TiposDoacoes::class, 'id', 'tipo_id');
     }
     public function unidade(): HasOne {
-        return $this->hasOne(EntidadeUnidade::class, 'unidade_id');
+        return $this->hasOne(EntidadeUnidade::class, 'id', 'unidade_id');
     }
 }
